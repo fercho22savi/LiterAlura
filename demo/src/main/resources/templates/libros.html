@@ -1,0 +1,18 @@
+<table xmlns:th="http://www.w3.org/1999/xhtml">
+    <thead>
+    <tr>
+        <th>Título</th>
+        <th>Idioma</th>
+        <th>Descargas</th>
+        <th>Autor</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="libro : ${libros}">
+        <td th:text="${libro.titulo}"></td>
+        <td th:text="${libro.idioma}"></td>
+        <td th:text="${libro.downloadCount}"></td>
+        <td th:text="${libro.autor.nombre}"></td>
+    </tr>
+    </tbody>
+</table>

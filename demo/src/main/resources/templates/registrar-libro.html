@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrar Libro</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<h1>➕ Registrar Libro</h1>
+
+<form th:action="@{/api/libros}" method="post" th:object="${libro}">
+    <label>Título:</label>
+    <input type="text" th:field="*{titulo}" placeholder="Título" required>
+    <br>
+
+    <label>Idioma:</label>
+    <input type="text" th:field="*{idioma}" placeholder="Idioma" required>
+    <br>
+
+    <label>Descargas:</label>
+    <input type="number" th:field="*{downloadCount}" placeholder="Descargas" required>
+    <br>
+
+    <h3>Autor</h3>
+    <label>Nombre:</label>
+    <input type="text" th:field="*{autor.nombre}" placeholder="Nombre del autor" required>
+    <br>
+
+    <label>Año de nacimiento:</label>
+    <input type="number" th:field="*{autor.birthYear}" placeholder="Año de nacimiento">
+    <br>
+
+    <label>Año de fallecimiento:</label>
+    <input type="number" th:field="*{autor.deathYear}" placeholder="Año de fallecimiento">
+    <br>
+
+    <button type="submit">Registrar</button>
+</form>
+
+<a th:href="@{/libros}">Volver al catálogo</a>
+
+</body>
+</html>

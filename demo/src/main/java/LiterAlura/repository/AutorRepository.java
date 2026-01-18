@@ -1,4 +1,15 @@
 package LiterAlura.repository;
 
-public class AutorRepository {
+import LiterAlura.model.Autor;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
+import java.util.Optional;
+
+public interface AutorRepository extends JpaRepository<Autor, Long> {
+
+
+    Optional<Autor> findByNombre(String name);
+
+    List<Autor> findByNacimientoLessThanEqualAndFallecimientoGreaterThanEqual(int year, int year1);
 }
