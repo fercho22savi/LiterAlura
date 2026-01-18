@@ -2,42 +2,54 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Registrar Libro</title>
-    <link rel="stylesheet" href="/css/styles.css">
+    <title th:text="${accion} + ' Libro'">Libro</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
 </head>
 <body>
-<h1>➕ Registrar Libro</h1>
 
-<form th:action="@{/api/libros}" method="post" th:object="${libro}">
+<h1 th:text="${accion} + ' Libro'">Registrar Libro</h1>
+
+<!-- Formulario dinámico: cambia la acción según Registrar o Editar -->
+<form th:action="${accion == 'Registrar'} ? @{/libros/registrar} : @{/libros/editar/{id}(id=${libroId})}"
+      th:object="${libro}"
+      method="post">
+
+    <!-- Título -->
     <label>Título:</label>
-    <input type="text" th:field="*{titulo}" placeholder="Título" required>
+    <input type="text" th:field="*{titulo}" required>
     <br>
 
+    <!-- Idioma -->
     <label>Idioma:</label>
-    <input type="text" th:field="*{idioma}" placeholder="Idioma" required>
+    <input type="text" th:field="*{idioma}" required>
     <br>
 
+    <!-- Descargas -->
     <label>Descargas:</label>
-    <input type="number" th:field="*{downloadCount}" placeholder="Descargas" required>
+    <input type="number" th:field="*{descargas}">
     <br>
 
+    <!-- Autor -->
     <h3>Autor</h3>
+
     <label>Nombre:</label>
-    <input type="text" th:field="*{autor.nombre}" placeholder="Nombre del autor" required>
+    <input type="text" th:field="*{autorNombre}" required>
     <br>
 
     <label>Año de nacimiento:</label>
-    <input type="number" th:field="*{autor.birthYear}" placeholder="Año de nacimiento">
+    <input type="number" th:field="*{autorBirthYear}">
     <br>
 
     <label>Año de fallecimiento:</label>
-    <input type="number" th:field="*{autor.deathYear}" placeholder="Año de fallecimiento">
-    <br>
+    <input type="number" th:field="*{autorDeathYear}">
+    <br><br>
 
-    <button type="submit">Registrar</button>
+    <!-- Botón dinámico -->
+    <button type="submit" th:text="${accion}">Registrar</button>
 </form>
 
-<a th:href="@{/libros}">Volver al catálogo</a>
+<br>
+<a th:href="@{/libros}">⬅ Volver al catálogo</a>
 
 </body>
 </html>

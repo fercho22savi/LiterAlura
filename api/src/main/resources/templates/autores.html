@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Listado de Autores</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+</head>
+
+<body>
+
+<nav>
+    <a th:href="@{/}">Inicio</a>
+    <a th:href="@{/autores}">Autores</a>
+    <a th:href="@{/autores/registrar}">➕ Registrar Autor</a>
+</nav>
+
+<div class="container">
+    <h1>👤 Listado de Autores</h1>
+
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Año de nacimiento</th>
+            <th>Año de fallecimiento</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+
+        <tbody>
+
+        <tr th:each="autor : ${autores}">
+            <td th:text="${autor.id}"></td>
+            <td th:text="${autor.nombre}"></td>
+            <td th:text="${autor.birthYear}"></td>
+            <td th:text="${autor.deathYear != null ? autor.deathYear : '—'}"></td>
+            <td class="actions">
+                <a th:href="@{/autores/editar/{id}(id=${autor.id})}"
+                   class="btn btn-edit">
+                    Editar
+                </a>
+
+                <a th:href="@{/autores/eliminar/{id}(id=${autor.id})}"
+                   class="btn btn-delete"
+                   onclick="return confirm('¿Eliminar este autor?')">
+                    Eliminar
+                </a>
+            </td>
+        </tr>
+
+        <!-- Lista vacía -->
+        <tr th:if="${#lists.isEmpty(autores)}">
+            <td colspan="5" class="empty">
+                No hay autores registrados
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

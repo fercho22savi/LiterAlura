@@ -8,14 +8,13 @@ import lombok.Setter;
 @Getter
 public class LibroForm {
 
-    // Getters y Setters
     @NotBlank(message = "El título es obligatorio")
     private String titulo;
 
     @NotBlank(message = "El idioma es obligatorio")
     private String idioma;
 
-    private int downloadCount;
+    private Integer descargas; // ⚠ coincide con Libro.descargas
 
     @NotBlank(message = "El nombre del autor es obligatorio")
     private String autorNombre;
@@ -24,8 +23,22 @@ public class LibroForm {
     private Integer autorDeathYear;
 
     // Constructor vacío obligatorio para Thymeleaf
-    public LibroForm() {
+    public LibroForm() {}
 
+    // Constructor con parámetros para inicializar al editar
+    public LibroForm(String titulo, String idioma, String autorNombre, Integer descargas, Integer autorBirthYear, Integer autorDeathYear) {
+        this.titulo = titulo;
+        this.idioma = idioma;
+        this.autorNombre = autorNombre;
+        this.descargas = descargas;
+        this.autorBirthYear = autorBirthYear;
+        this.autorDeathYear = autorDeathYear;
     }
 
+    // Constructor simplificado (opcional) solo con lo mínimo
+    public LibroForm(String titulo, String idioma, String autorNombre) {
+        this.titulo = titulo;
+        this.idioma = idioma;
+        this.autorNombre = autorNombre;
+    }
 }
