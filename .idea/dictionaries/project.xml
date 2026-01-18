@@ -3,14 +3,20 @@
     <words>
       <w>actualizada</w>
       <w>agrega</w>
+      <w>alura</w>
+      <w>atributos</w>
       <w>autor</w>
       <w>autores</w>
       <w>buscar</w>
       <w>cantidad</w>
+      <w>clase</w>
+      <w>cliente</w>
+      <w>conexiones</w>
       <w>contar</w>
       <w>convertimos</w>
       <w>convierte</w>
       <w>creamos</w>
+      <w>credenciales</w>
       <w>datos</w>
       <w>dependencia</w>
       <w>desconocido</w>
@@ -18,6 +24,7 @@
       <w>duplicados</w>
       <w>entidad</w>
       <w>evitar</w>
+      <w>expuestos</w>
       <w>formulario</w>
       <w>guardar</w>
       <w>gutendex</w>
@@ -29,16 +36,28 @@
       <w>listado</w>
       <w>mapear</w>
       <w>modelo</w>
+      <w>método</w>
+      <w>métodos</w>
       <w>nombre</w>
       <w>objeto</w>
       <w>obligatorio</w>
+      <w>obtener</w>
+      <w>opcional</w>
+      <w>orígenes</w>
+      <w>paketobuildpacks</w>
+      <w>permitidos</w>
+      <w>permitir</w>
+      <w>postgre</w>
       <w>procesa</w>
+      <w>proyecto</w>
+      <w>puede</w>
       <w>redirige</w>
       <w>registrados</w>
       <w>registrarlibros</w>
       <w>registro</w>
       <w>renderiza</w>
       <w>retorna</w>
+      <w>titulo</w>
       <w>título</w>
       <w>vacío</w>
       <w>validar</w>
