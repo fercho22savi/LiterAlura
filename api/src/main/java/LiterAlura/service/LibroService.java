@@ -139,9 +139,4 @@ public class LibroService {
         return libroRepository.save(libro);
     }
 
-    public Libro buscarPorId(Long id) {
-        return libroRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Libro no encontrado con ID: " + id));
-    }
-
 }

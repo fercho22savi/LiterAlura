@@ -9,9 +9,9 @@
 <body>
 
 <nav>
-    <a th:href="@{/}">Inicio</a>
-    <a th:href="@{/autores}">Autores</a>
-    <a th:href="@{/autores/registrar}">➕ Registrar Autor</a>
+    <a th:href="@{/libros/}">Inicio</a>
+    <a th:href="@{/libros/autores}">Autores</a>
+    <a th:href="@{/libros/autores/registrar}">➕ Registrar Autor</a>
 </nav>
 
 <div class="container">
@@ -36,12 +36,15 @@
             <td th:text="${autor.birthYear}"></td>
             <td th:text="${autor.deathYear != null ? autor.deathYear : '—'}"></td>
             <td class="actions">
-                <a th:href="@{/autores/editar/{id}(id=${autor.id})}"
+
+                <!-- EDITAR -->
+                <a th:href="@{/libros/autores/editar/{id}(id=${autor.id})}"
                    class="btn btn-edit">
                     Editar
                 </a>
 
-                <a th:href="@{/autores/eliminar/{id}(id=${autor.id})}"
+                <!-- ELIMINAR -->
+                <a th:href="@{/libros/autores/eliminar/{id}(id=${autor.id})}"
                    class="btn btn-delete"
                    onclick="return confirm('¿Eliminar este autor?')">
                     Eliminar
