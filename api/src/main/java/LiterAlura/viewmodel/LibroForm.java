@@ -1,14 +1,17 @@
 package LiterAlura.viewmodel;
 
-import jakarta.validation.constraints.NotBlank;
+import LiterAlura.model.Libro;
 import lombok.Getter;
 import lombok.Setter;
+
+import jakarta.validation.constraints.NotBlank;
 
 @Getter
 @Setter
 public class LibroForm {
 
-    // ===== LIBRO =====
+    private Long id;
+
     @NotBlank(message = "El título es obligatorio")
     private String titulo;
 
@@ -17,24 +20,35 @@ public class LibroForm {
 
     private Integer descargas;
 
-    // ===== AUTOR =====
+    // Para crear un autor nuevo
     @NotBlank(message = "El nombre del autor es obligatorio")
     private String autorNombre;
 
     private Integer autorBirthYear;
     private Integer autorDeathYear;
 
-    // Constructor vacío (OBLIGATORIO para Thymeleaf)
-    public LibroForm() {}
+    // Getter y Setter de autorId (ya generados por Lombok, opcionales si quieres lógica extra)
+    // Para seleccionar un autor existente
+    private Long autorId;
 
-    // Constructor para edición
-    public LibroForm(String titulo, String idioma, Integer descargas,
-                     String autorNombre, Integer autorBirthYear, Integer autorDeathYear) {
-        this.titulo = titulo;
-        this.idioma = idioma;
-        this.descargas = descargas;
-        this.autorNombre = autorNombre;
-        this.autorBirthYear = autorBirthYear;
-        this.autorDeathYear = autorDeathYear;
+    /**
+     * Convierte un objeto Libro a LibroForm para llenar formularios de edición.
+     */
+    public static LibroForm fromLibro(Libro libro) {
+        LibroForm form = new LibroForm();
+        form.setId(libro.getId());
+        form.setTitulo(libro.getTitulo());
+        form.setIdioma(libro.getIdioma());
+        form.setDescargas(libro.getDescargas());
+
+        if (libro.getAutor() != null) {
+            form.setAutorId(libro.getAutor().getId());
+            form.setAutorNombre(libro.getAutor().getNombre());
+            form.setAutorBirthYear(libro.getAutor().getBirthYear());
+            form.setAutorDeathYear(libro.getAutor().getDeathYear());
+        }
+
+        return form;
     }
+
 }

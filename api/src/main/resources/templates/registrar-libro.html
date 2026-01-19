@@ -1,55 +1,57 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title th:text="${accion} + ' Libro'">Libro</title>
+    <title th:text="${accion} + ' Libro'">Registrar / Editar Libro</title>
     <link rel="stylesheet" th:href="@{/styles.css}">
 </head>
 <body>
+<header class="header">
+    <h1 th:text="${accion} + ' Libro'">Registrar Libro</h1>
+</header>
 
-<h1 th:text="${accion} + ' Libro'">Registrar Libro</h1>
+<main class="content">
+    <form class="libro-form" th:action="@{/libros/guardar}" th:object="${libro}" method="post">
+        <!-- ID oculto -->
+        <input type="hidden" th:field="*{id}" />
 
-<!-- Formulario dinámico: cambia la acción según Registrar o Editar -->
-<form th:action="${accion == 'Registrar'} ? @{/libros/registrar} : @{/libros/editar/{id}(id=${libroId})}"
-      th:object="${libro}"
-      method="post">
+        <h3 th:text="${accion} + ' Libro'">Registrar Libro</h3>
 
-    <!-- Título -->
-    <label>Título:</label>
-    <input type="text" th:field="*{titulo}" required>
-    <br>
+        <!-- Título -->
+        <label for="titulo">Título:</label>
+        <input type="text" id="titulo" th:field="*{titulo}" placeholder="Título del libro">
+        <div th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}"></div>
 
-    <!-- Idioma -->
-    <label>Idioma:</label>
-    <input type="text" th:field="*{idioma}" required>
-    <br>
+        <!-- Idioma -->
+        <label for="idioma">Idioma:</label>
+        <input type="text" id="idioma" th:field="*{idioma}" placeholder="Idioma del libro">
+        <div th:if="${#fields.hasErrors('idioma')}" th:errors="*{idioma}"></div>
 
-    <!-- Descargas -->
-    <label>Descargas:</label>
-    <input type="number" th:field="*{descargas}">
-    <br>
+        <!-- Descargas -->
+        <label for="descargas">Descargas:</label>
+        <input type="number" id="descargas" th:field="*{descargas}" placeholder="Número de descargas">
 
-    <!-- Autor -->
-    <h3>Autor</h3>
+        <!-- Autor -->
+        <h3>Autor</h3>
+        <input type="hidden" th:field="*{autorId}" />
 
-    <label>Nombre:</label>
-    <input type="text" th:field="*{autorNombre}" required>
-    <br>
+        <label for="autorNombre">Nombre del Autor:</label>
+        <input type="text" id="autorNombre" th:field="*{autorNombre}" placeholder="Nombre del autor">
+        <div th:if="${#fields.hasErrors('autorNombre')}" th:errors="*{autorNombre}"></div>
 
-    <label>Año de nacimiento:</label>
-    <input type="number" th:field="*{autorBirthYear}">
-    <br>
+        <label for="autorBirthYear">Año de Nacimiento:</label>
+        <input type="number" id="autorBirthYear" th:field="*{autorBirthYear}" placeholder="Año de nacimiento">
 
-    <label>Año de fallecimiento:</label>
-    <input type="number" th:field="*{autorDeathYear}">
-    <br><br>
+        <label for="autorDeathYear">Año de Fallecimiento:</label>
+        <input type="number" id="autorDeathYear" th:field="*{autorDeathYear}" placeholder="Año de fallecimiento">
 
-    <!-- Botón dinámico -->
-    <button type="submit" th:text="${accion}">Registrar</button>
-</form>
+        <!-- Botón Guardar -->
+        <button type="submit" th:text="${accion} + ' Libro'">Guardar Libro</button>
+    </form>
+</main>
 
-<br>
-<a th:href="@{/libros}">⬅ Volver al catálogo</a>
-
+<footer class="footer">
+    <p>Gutendex Dashboard &copy; 2026</p>
+</footer>
 </body>
 </html>

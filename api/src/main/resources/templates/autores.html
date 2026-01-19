@@ -2,66 +2,35 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Listado de Autores</title>
+    <title>Autores | Gutendex</title>
     <link rel="stylesheet" th:href="@{/styles.css}">
 </head>
-
 <body>
+<header>
+    <h1>🖊️ Autores</h1>
+    <a th:href="@{/autores/registrar}">Registrar nuevo autor</a>
+    <a th:href="@{/libros}">Ver libros</a>
+</header>
 
-<nav>
-    <a th:href="@{/libros/}">Inicio</a>
-    <a th:href="@{/libros/autores}">Autores</a>
-    <a th:href="@{/libros/autores/registrar}">➕ Registrar Autor</a>
-</nav>
-
-<div class="container">
-    <h1>👤 Listado de Autores</h1>
-
-    <table>
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Año de nacimiento</th>
-            <th>Año de fallecimiento</th>
-            <th>Acciones</th>
-        </tr>
-        </thead>
-
-        <tbody>
-
-        <tr th:each="autor : ${autores}">
-            <td th:text="${autor.id}"></td>
-            <td th:text="${autor.nombre}"></td>
-            <td th:text="${autor.birthYear}"></td>
-            <td th:text="${autor.deathYear != null ? autor.deathYear : '—'}"></td>
-            <td class="actions">
-
-                <!-- EDITAR -->
-                <a th:href="@{/libros/autores/editar/{id}(id=${autor.id})}"
-                   class="btn btn-edit">
-                    Editar
-                </a>
-
-                <!-- ELIMINAR -->
-                <a th:href="@{/libros/autores/eliminar/{id}(id=${autor.id})}"
-                   class="btn btn-delete"
-                   onclick="return confirm('¿Eliminar este autor?')">
-                    Eliminar
-                </a>
-            </td>
-        </tr>
-
-        <!-- Lista vacía -->
-        <tr th:if="${#lists.isEmpty(autores)}">
-            <td colspan="5" class="empty">
-                No hay autores registrados
-            </td>
-        </tr>
-
-        </tbody>
-    </table>
-</div>
-
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="autor : ${autores}">
+        <td th:text="${autor.id}">1</td>
+        <td th:text="${autor.nombre}">Nombre Autor</td>
+        <td>
+            <a th:href="@{'/autores/editar/' + ${autor.id}}">Editar</a> |
+            <a th:href="@{'/autores/eliminar/' + ${autor.id}}"
+               onclick="return confirm('¿Seguro que quieres eliminar este autor?');">Eliminar</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>

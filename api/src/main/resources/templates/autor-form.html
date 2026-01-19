@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Autor</title>
+</head>
+
+<body>
+
+<h1 th:text="${autor.id == null ? 'Registrar Autor' : 'Editar Autor'}"></h1>
+
+<form th:action="@{/libros/autores/guardar}"
+      th:object="${autor}"
+      method="post">
+
+    <input type="hidden" th:field="*{id}"/>
+
+    <label>Nombre</label>
+    <input type="text" th:field="*{nombre}"/>
+    <div th:if="${#fields.hasErrors('nombre')}"
+         th:errors="*{nombre}"></div>
+
+    <label>Año de nacimiento</label>
+    <input type="number" th:field="*{birthYear}"/>
+
+    <label>Año de fallecimiento</label>
+    <input type="number" th:field="*{deathYear}"/>
+
+    <div th:if="${error}">
+        <p th:text="${error}"></p>
+    </div>
+
+    <button type="submit">Guardar</button>
+    <a th:href="@{/libros/autores}">Cancelar</a>
+
+</form>
+
+</body>
+</html>

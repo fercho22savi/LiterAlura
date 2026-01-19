@@ -10,7 +10,12 @@ import java.util.Optional;
 
 public interface AutorRepository extends JpaRepository<Autor, Long> {
 
+    // Búsqueda parcial por nombre
+    List<Autor> findByNombreIgnoreCaseContaining(String nombre);
+
     Optional<Autor> findByNombreIgnoreCase(String nombre);
+
+    boolean existsByNombreIgnoreCase(String nombre);
 
     @Query("""
         SELECT a FROM Autor a
@@ -18,6 +23,4 @@ public interface AutorRepository extends JpaRepository<Autor, Long> {
         AND (a.deathYear IS NULL OR a.deathYear > :year)
     """)
     List<Autor> findAutoresVivosEn(@Param("year") int year);
-
-    Optional<Autor> findByNombre(String name);
 }

@@ -2,7 +2,6 @@ package LiterAlura.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Positive;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,16 +23,14 @@ public class Autor {
     @Column(nullable = false, unique = true)
     private String nombre;
 
-    @Positive(message = "El año de nacimiento debe ser positivo")
+    @Column(name = "birth_year")
     private Integer birthYear;
 
-    @Positive(message = "El año de fallecimiento debe ser positivo")
+    @Column(name = "death_year")
     private Integer deathYear;
 
-    // Constructor JPA
     public Autor() {}
 
-    // Constructor de uso normal
     public Autor(String nombre, Integer birthYear, Integer deathYear) {
         this.nombre = nombre;
         this.birthYear = birthYear;

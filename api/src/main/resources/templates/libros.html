@@ -1,56 +1,45 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <meta charset="UTF-8">
-    <title>Catálogo de Libros</title>
+    <title>Libros | LiterAlura</title>
     <link rel="stylesheet" th:href="@{/styles.css}">
 </head>
-
 <body>
+<h1>📚 Lista de Libros</h1>
 
-<nav class="nav">
-    <a th:href="@{/}" class="nav-link">Inicio</a>
-    <a th:href="@{/libros}" class="nav-link">Libros</a>
-    <a th:href="@{/libros/registrar}" class="nav-link">➕ Registrar Libro</a>
-</nav>
+<form th:action="@{/libros/buscar}" method="get">
+    <input type="text" name="titulo" placeholder="Buscar por título">
+    <button type="submit">Buscar</button>
+</form>
 
-<div class="container">
-    <h1>📚 Catálogo de Libros</h1>
+<a th:href="@{/libros/registrar}">Registrar Nuevo Libro</a>
 
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Título</th>
-            <th>Idioma</th>
-            <th>Descargas</th>
-            <th>Autor</th>
-            <th>Acciones</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="libro : ${libros}">
-            <td th:text="${libro.titulo}"></td>
-            <td th:text="${libro.idioma}"></td>
-            <td th:text="${libro.descargas}"></td>
-            <td th:text="${libro.autor != null ? libro.autor.nombre : 'Sin autor'}"></td>
-            <td class="actions">
-                <a th:href="@{/libros/editar/{id}(id=${libro.id})}" class="btn btn-edit">✏️ Editar</a>
-                <a th:href="@{/libros/eliminar/{id}(id=${libro.id})}"
-                   onclick="return confirm('¿Eliminar este libro?')"
-                   class="btn btn-delete">🗑️ Eliminar</a>
-            </td>
-        </tr>
-
-        <!-- Mensaje cuando no hay libros -->
-        <tr th:if="${#lists.isEmpty(libros)}">
-            <td colspan="5" style="text-align:center">
-                No hay libros registrados
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Título</th>
+        <th>Idioma</th>
+        <th>Descargas</th>
+        <th>Autor</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="libro : ${libros}">
+        <td th:text="${libro.id}">ID</td>
+        <td th:text="${libro.titulo}">Título</td>
+        <td th:text="${libro.idioma}">Idioma</td>
+        <td th:text="${libro.descargas}">Descargas</td>
+        <td th:text="${libro.autor != null ? libro.autor.nombre : 'Desconocido'}">Autor</td>
+        <td>
+            <a th:href="@{|/libros/editar/${libro.id}|}">Editar</a> |
+            <a th:href="@{|/libros/eliminar/${libro.id}|}"
+               onclick="return confirm('¿Seguro que quieres eliminar este libro?');">Eliminar</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>
