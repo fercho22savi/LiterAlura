@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Autores | Gutendex</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+</head>
+<body>
+
+<header class="header">
+    <h1>🖊️ Autores</h1>
+</header>
+
+<main class="content" style="flex-direction: column; width:100%;">
+
+    <div style="width:100%; max-width:800px; text-align:right; margin-bottom:15px;">
+        <a th:href="@{/autores/registrar}" class="btn-modern btn-new">
+            ➕ Nuevo Autor
+        </a>
+    </div>
+
+    <table style="max-width:800px;">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="autor : ${autores}">
+            <td th:text="${autor.id}"></td>
+            <td th:text="${autor.nombre}"></td>
+            <td>
+                <div class="btn-group">
+                    <a th:href="@{/autores/editar/{id}(id=${autor.id})}"
+                       class="btn-modern btn-edit-modern">✏️ Editar</a>
+
+                    <a th:href="@{/autores/eliminar/{id}(id=${autor.id})}"
+                       class="btn-modern btn-delete-modern"
+                       onclick="return confirm('¿Eliminar autor?');">🗑️ Eliminar</a>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</main>
+
+<footer class="footer">
+    <small>© 2026 Gutendex</small>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Libros | Gutendex</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+</head>
+<body>
+
+<header class="header">
+    <h1>📖 Libros</h1>
+</header>
+
+<main class="content" style="flex-direction: column; width: 100%;">
+
+    <!-- Botón Nuevo Libro -->
+    <div style="width:100%; max-width:1000px; text-align:right; margin-bottom:15px;">
+        <a th:href="@{/libros/registrar}" class="btn-modern btn-new">
+            <span class="btn-icon">➕</span> Nuevo Libro
+        </a>
+    </div>
+
+    <table style="max-width:1000px;">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Título</th>
+            <th>Idioma</th>
+            <th>Descargas</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="libro : ${libros}">
+            <td th:text="${libro.id}"></td>
+            <td th:text="${libro.titulo}"></td>
+            <td th:text="${libro.idioma}"></td>
+            <td th:text="${libro.descargas}"></td>
+            <td>
+                <div class="btn-group">
+                    <a th:href="@{/libros/editar/{id}(id=${libro.id})}"
+                       class="btn-modern btn-edit-modern">
+                        ✏️ Editar
+                    </a>
+
+                    <a th:href="@{/libros/eliminar/{id}(id=${libro.id})}"
+                       class="btn-modern btn-delete-modern"
+                       onclick="return confirm('¿Eliminar este libro?');">
+                        🗑️ Eliminar
+                    </a>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</main>
+
+<footer class="footer">
+    <small>© 2026 Gutendex</small>
+</footer>
+
+</body>
+</html>

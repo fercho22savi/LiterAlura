@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${accion} + ' Autor'">Autor</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+</head>
+<body>
+
+<h1 th:text="${accion} + ' Autor'">Registrar Autor</h1>
+
+<!-- ===============================
+     🔍 BUSCAR AUTOR EN API
+================================ -->
+<section class="search-box">
+    <form th:action="@{/libros/autores/buscar}" method="get">
+        <label>Buscar autor en API:</label>
+        <input type="text" name="q" placeholder="Nombre del autor" required>
+        <button type="submit">Buscar</button>
+    </form>
+</section>
+
+<!-- ===============================
+     📋 RESULTADOS API
+================================ -->
+<section th:if="${resultados != null}">
+    <h3>Autores encontrados</h3>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Nacimiento</th>
+            <th>Fallecimiento</th>
+            <th>Acción</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="autorApi, iter : ${resultados}">
+            <td th:text="${autorApi.nombre}"></td>
+            <td th:text="${autorApi.birthYear}"></td>
+            <td th:text="${autorApi.deathYear != null ? autorApi.deathYear : '—'}"></td>
+            <td>
+                <a th:href="@{/libros/autores/seleccionar/{i}(i=${iter.index})}"
+                   class="btn btn-edit">
+                    Usar
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</section>
+
+<hr>
+
+<!-- ===============================
+     📝 FORMULARIO (CRUD)
+================================ -->
+
+<form th:action="${accion == 'Registrar'}
+        ? @{/libros/autores/registrar}
+        : @{/libros/autores/editar/{id}(id=${autor.id})}"
+      th:object="${autor}"
+      method="post">
+
+    <label>Nombre:</label>
+    <input type="text" th:field="*{nombre}" required>
+
+    <label>Año de nacimiento:</label>
+    <input type="number" th:field="*{birthYear}">
+
+    <label>Año de fallecimiento:</label>
+    <input type="number" th:field="*{deathYear}">
+
+    <button type="submit" th:text="${accion}">Guardar</button>
+</form>
+
+<br>
+<a th:href="@{/libros/autores}">⬅ Volver al listado</a>
+
+</body>
+</html>

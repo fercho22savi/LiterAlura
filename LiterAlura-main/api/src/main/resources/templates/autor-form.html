@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${accion} + ' Libro'"></title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+</head>
+<body>
+
+<header class="header">
+    <h1 th:text="${accion} + ' Libro'"></h1>
+</header>
+
+<main class="content">
+    <form class="libro-form"
+          th:action="@{/libros/guardar}"
+          th:object="${libro}"
+          method="post">
+
+        <input type="hidden" th:field="*{id}"/>
+
+        <label>Título</label>
+        <input type="text" th:field="*{titulo}" required>
+        <div th:errors="*{titulo}"></div>
+
+        <label>Idioma</label>
+        <input type="text" th:field="*{idioma}" required>
+
+        <label>Descargas</label>
+        <input type="number" th:field="*{descargas}">
+
+        <h3>Autor</h3>
+
+        <input type="hidden" th:field="*{autorId}">
+
+        <label>Nombre</label>
+        <input type="text" th:field="*{autorNombre}" required>
+
+        <label>Nacimiento</label>
+        <input type="number" th:field="*{autorBirthYear}">
+
+        <label>Fallecimiento</label>
+        <input type="number" th:field="*{autorDeathYear}">
+
+        <button type="submit" th:text="${accion}"></button>
+
+    </form>
+</main>
+
+<footer class="footer">
+    <small>© 2026 Gutendex</small>
+</footer>
+
+</body>
+</html>

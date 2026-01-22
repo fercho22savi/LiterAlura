@@ -1,0 +1,340 @@
+/* ===============================
+   RESET GLOBAL
+================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ===============================
+   VARIABLES
+================================ */
+:root {
+    --bg-main: #0f172a;
+    --bg-secondary: #020617;
+    --bg-card: #1e293b;
+
+    --primary: #38bdf8;
+    --primary-hover: #0ea5e9;
+
+    --text-main: #e5e7eb;
+    --text-muted: #94a3b8;
+
+    --danger: #ef4444;
+    --warning: #facc15;
+}
+
+/* ===============================
+   BODY
+================================ */
+body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===============================
+   HEADER
+================================ */
+.header {
+    background-color: var(--bg-secondary);
+    padding: 25px;
+    border-bottom: 1px solid #1e293b;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: auto;
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 2.2rem;
+    color: var(--primary);
+}
+
+.header p {
+    color: var(--text-muted);
+    margin-top: 5px;
+}
+
+/* ===============================
+   NAVBAR
+================================ */
+.nav {
+    background-color: var(--bg-secondary);
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 15px;
+    border-bottom: 1px solid #1e293b;
+}
+
+.nav-link {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 10px 14px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.nav-link:hover {
+    background-color: #1e293b;
+    color: #7dd3fc;
+    transform: translateY(-2px);
+}
+
+/* ===============================
+   MAIN CONTENT
+================================ */
+.content {
+    flex: 1;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ===============================
+   DASHBOARD CARD
+================================ */
+.welcome-card {
+    background-color: var(--bg-card);
+    padding: 35px;
+    border-radius: 14px;
+    max-width: 600px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+
+.welcome-card h2 {
+    color: var(--primary);
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+}
+
+.welcome-card p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* ===============================
+   TABLES
+================================ */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--bg-secondary);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 25px;
+}
+
+thead {
+    background-color: var(--bg-secondary);
+}
+
+th, td {
+    padding: 14px;
+    border-bottom: 1px solid #1e293b;
+}
+
+th {
+    color: var(--primary);
+    text-align: left;
+}
+
+tbody tr:hover {
+    background-color: #1e293b;
+}
+
+/* ===============================
+   FORMS
+================================ */
+form {
+    background-color: var(--bg-card);
+    padding: 30px;
+    border-radius: 14px;
+    max-width: 550px;
+    margin: auto;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+}
+
+form h1, form h3 {
+    text-align: center;
+    color: var(--primary);
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+input {
+    width: 100%;
+    margin-top: 6px;
+    padding: 12px;
+    background-color: var(--bg-main);
+    border: 1px solid #334155;
+    border-radius: 8px;
+    color: var(--text-main);
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+/* ===============================
+   VALIDATION MESSAGES
+================================ */
+.error,
+div[th\\:errors] {
+    color: #f87171;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+/* ===============================
+   BUTTONS
+================================ */
+button,
+input[type="submit"],
+.btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 25px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--primary);
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+button:hover,
+input[type="submit"]:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+/* CRUD */
+.btn-edit {
+    background-color: var(--warning);
+}
+
+.btn-edit:hover {
+    background-color: #fde047;
+}
+
+.btn-delete {
+    background-color: var(--danger);
+    color: #fff;
+}
+
+.btn-delete:hover {
+    background-color: #dc2626;
+}
+
+/* ===============================
+   EMPTY STATES
+================================ */
+.empty {
+    text-align: center;
+    color: var(--text-muted);
+    font-style: italic;
+    padding: 25px;
+}
+
+/* ===============================
+   FOOTER
+================================ */
+.footer {
+    background-color: var(--bg-secondary);
+    padding: 15px;
+    text-align: center;
+    border-top: 1px solid #1e293b;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+/* ===============================
+   BOTONES MODERNOS
+================================ */
+.btn-group {
+    display: flex;
+    gap: 8px;
+}
+
+/* Botón base */
+.btn-modern {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+
+/* ===============================
+   NUEVO LIBRO
+================================ */
+.btn-new {
+    background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+    color: #020617;
+}
+
+.btn-new:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(56, 189, 248, 0.45);
+}
+
+/* ===============================
+   EDITAR
+================================ */
+.btn-edit-modern {
+    background: linear-gradient(135deg, #facc15, #fde047);
+    color: #020617;
+}
+
+.btn-edit-modern:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 6px 16px rgba(250, 204, 21, 0.45);
+}
+
+/* ===============================
+   ELIMINAR
+================================ */
+.btn-delete-modern {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: #ffffff;
+}
+
+.btn-delete-modern:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 6px 16px rgba(239, 68, 68, 0.45);
+}
+
+/* ===============================
+   ICONOS (emoji o font-icons)
+================================ */
+.btn-icon {
+    font-size: 16px;
+    line-height: 1;
+}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gutendex | Dashboard</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+</head>
+<body>
+
+<header class="header">
+    <h1>📚 Gutendex Dashboard</h1>
+    <p>Gestión de libros y autores</p>
+</header>
+
+<nav class="nav">
+    <a th:href="@{/libros}">📖 Libros</a>
+    <a th:href="@{/libros/registrar}">➕ Nuevo Libro</a>
+    <a th:href="@{/autores}">👤 Autores</a>
+    <a th:href="@{/autores/registrar}">➕ Nuevo Autor</a>
+</nav>
+
+<main class="content">
+    <p>Selecciona una opción del menú</p>
+</main>
+
+<footer class="footer">
+    <small>© 2026 Gutendex App</small>
+</footer>
+
+</body>
+</html>
