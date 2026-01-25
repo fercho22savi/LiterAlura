@@ -26,9 +26,11 @@ public class Libro {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "autor_id", nullable = false)
     private Autor autor;
+    /*Constructor sin parametros*/
+    public Libro() {
 
-    public Libro() {}
-
+    }
+    /*Constructor con parametros*/
     public Libro(String titulo, String idioma, Integer descargas, Autor autor) {
         this.titulo = titulo;
         this.idioma = idioma;

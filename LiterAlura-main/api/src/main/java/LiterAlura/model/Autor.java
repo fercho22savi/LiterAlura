@@ -41,4 +41,13 @@ public class Autor {
     public String toString() {
         return nombre;
     }
+
+    public Integer getFechaNacimiento() {
+        return birthYear;
+    }
+
+    public Integer getFechaMuerte() {
+        return deathYear;
+    }
+
 }

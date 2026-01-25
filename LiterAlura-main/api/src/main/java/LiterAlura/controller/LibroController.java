@@ -26,16 +26,22 @@ public class LibroController {
         return "libros";
     }
 
-    // FORMULARIO REGISTRAR / EDITAR LIBRO
-    @GetMapping({"/registrar", "/editar/{id}"})
-    public String libroForm(@PathVariable(required = false) Long id, Model model) {
-        LibroForm libroForm = (id != null) ?
-                libroService.obtenerLibroForm(id) :
-                new LibroForm();
-        model.addAttribute("libro", libroForm);
-        model.addAttribute("accion", (id != null) ? "Editar" : "Registrar");
+    // Mostrar formulario para registrar nuevo
+    @GetMapping("/registrar")
+    public String mostrarFormularioRegistro(Model model) {
+        model.addAttribute("libro", new LibroForm());
+        model.addAttribute("accion", "Registrar");
         return "registrar-libro";
     }
+
+    // Mostrar formulario para editar existente
+    @GetMapping("/editar/{id}")
+    public String mostrarFormularioEdicion(@PathVariable Long id, Model model) {
+        model.addAttribute("libro", libroService.obtenerLibroForm(id));
+        model.addAttribute("accion", "Editar");
+        return "registrar-libro";
+    }
+
 
     // GUARDAR O ACTUALIZAR LIBRO
     @PostMapping("/guardar")

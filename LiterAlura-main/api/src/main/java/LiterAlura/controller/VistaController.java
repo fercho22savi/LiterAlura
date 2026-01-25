@@ -26,7 +26,7 @@ public class VistaController {
     // FORMULARIO REGISTRAR / EDITAR USANDO LibroForm
     @GetMapping("/libros/form")
     public String libroForm(@RequestParam(required = false) Long id, Model model) {
-        LibroForm libroForm = (id != null) ? libroService.obtenerLibroForm(id) : new LibroForm();
+        LibroForm libroForm = (id != null) ? (LibroForm) libroService.obtenerLibroForm(id) : new LibroForm();
         model.addAttribute("libro", libroForm);
         model.addAttribute("accion", (id != null) ? "Editar" : "Registrar");
         return "registrar-libro";
